@@ -22,11 +22,15 @@
       <td>{{$post->title}}</td>
       <td>{{ $post->user ? $post->user->name : 'not exist'}}</td>
       <td>{{$post->created_at}}</td>
-      <td><div class="btn-group-horizontal">  
-            <a href="{{route('posts.show',['post' => $post->id])}}" class="btn btn-info">View</a>
-            <a href="{{route('posts.edit',['post' => $post->id])}}" class="btn btn-primary">edit</a>
-             <form method="POST"action="{{route('posts.show',['post' => $post->id])}}">
-             @csrf @method('delete')<button type="submit" class="btn-danger" onclick="return confirm('Are you sure that you want to delete this post ?')">Delete </button></form>
+      <td><div class="row">  
+        <div class="col-2"><a href="{{route('posts.show',['post' => $post->id])}}" class="btn btn-info">View</a>
+        </div>
+        <div class="col-2"><a href="{{route('posts.edit',['post' => $post->id])}}" class="btn btn-primary">edit</a>
+        </div>
+        <div class="col-2"><form method="POST"action="{{route('posts.show',['post' => $post->id])}}">
+             @csrf @method('delete')<button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure that you want to delete this post ?')">Delete </button></form></div>
+
+             
 
 
         </div></td>
