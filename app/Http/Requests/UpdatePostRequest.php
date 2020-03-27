@@ -29,10 +29,10 @@ class UpdatePostRequest extends FormRequest
          
         return [
             'title' => [
-                'required','min:3','alpha',
+                'required','min:3',
                 Rule::unique('posts')->ignore($post->id),
              ],
-            'description'=>'required|alpha|min:10'
+            'description'=>'required|min:10'
         ];
     }
 }
