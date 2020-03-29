@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
-
+use App\User;
+use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
     /*
@@ -56,8 +58,31 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        $user = Socialite::driver('github')->user();
+        $user = Socialite::driver('github')->stateless()->user();
+        $user_logged = User::where('email',$user->getEmail())->first();
+         
+        if($user_logged){
+
+               Auth::login($user_logged);
+        }else{
+
+            $user_DB=new User();
+            $user_DB->name=$user->getNickname();
+            $user_DB->email=$user->getEmail();
+            $user_DB->password=Hash::make($user->getId());
+      
+            $user_DB->save();
+            Auth::login($user_DB);
+        }
+        
+
+        return redirect()->route('posts.index');
+
+
 
         // $user->token;
+         
     }
+
+    
 }
