@@ -58,11 +58,11 @@
                                 </button>
 
                                 <a href="/login/github" style="background-color:black; color:white;" class="btn ">
-                                    {{ __('Login/Signup With Github') }}
+                                    {{ __('Login With Github') }}
                                 </a>
 
-                                <a href="/login/github" style="background-color:white; color:black;" class="btn ">
-                                    {{ __('Login/Signup With Google+') }}
+                                <a href=" " style="background-color:white; border-color:black; color:red;" class="btn ">
+                                    {{ __('Login With Google+') }}
                                 </a>
                                 
 
